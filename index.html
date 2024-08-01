@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogiDash - Logistics Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <script>
+        checkAuth();
+    </script>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#overview">LogiDash</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end  " id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link"id="overview-link"  href="#overview">Overview</a></li>
+                    <li class="nav-item"><a class="nav-link"id="shipments-link" href="#shipments">Shipments</a></li>
+                    <li class="nav-item"><a class="nav-link" id="inventory-link" href="#inventory">Inventory</a></li>
+                    <li class="nav-item"><a class="nav-link" id="fleet-link" href="#fleet">Fleet</a></li>
+                    <li class="nav-item"><a class="nav-link" id="analytics-link" href="#analytics">Analytics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="logout()">Logout</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid content-wrapper">
+        <section id="overview">
+            <div class="section-header">
+            <h2>Overview</h2>
+        </div>
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <div class="card text-white bg-primary">
+                        <div class="card-body">
+                            <h5 class="card-Title">Total Shipments</h5>
+                            <p class="card-text display-4"  id="total-shipments">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card text-white bg-success">
+                        <div class="card-body">
+                            <h5 class="card-Title">On-Time Deliveries</h5>
+                            <p class="card-text display-4"id="on-time-deliveries">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card text-white bg-warning">
+                        <div class="card-body">
+                            <h5 class="card-Title">Inventory Items</h5>
+                            <p class="card-text display-4"id="inventory-items">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card text-white bg-info">
+                        <div class="card-body">
+                            <h5 class="card-Title">Active Vehicles</h5>
+                            <p class="card-text display-4"id="active-vehicles">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="shipments" class="mt-5">
+            <div class="section-header">
+            <h2>Shipments</h2>
+        </div>
+            <div class="row">
+                <div class="col-lg-8 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Shipment Tracking Map</h5>
+                            <div id="shipment-map"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Recent Shipments</h5>
+                            <ul class="list-group" id="recent-shipments">
+                                <!-- Will be populated by JavaScript -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="inventory" class="mt-5">
+            <div class="section-header">
+            <h2>Inventory</h2>
+        </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Inventory Levels</h5>
+                            <div class="chart-container">
+                            <canvas id="inventory-chart"></canvas>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Low Stock Items</h5>
+                            <table class="table table-striped" id="low-stock-table">
+                                <thead>
+                                    <tr>
+                                        <th>Item</th>
+                                        <th>Current Stock</th>
+                                        <th>Reorder Level</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="fleet" class="mt-5">
+            <div class="section-header">
+            <h2>Fleet Management</h2>
+        </div>
+            <div class="row">
+                <div class="col-md-8 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Vehicle Locations</h5>
+                            <div id="fleet-map" style="height: 400px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Vehicle Status</h5>
+                            <div class="chart-container">
+                            <canvas id="vehicle-status-chart"></canvas>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="analytics" class="mt-5 mb-5">
+            <div class="section-header">
+                <h2>Analytics</h2>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label for="fromDate">From Date</label>
+                    <input type="date" id="fromDate" class="form-control">
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-3">
+                    <label for="toDate">To Date</label>
+                    <input type="date" id="toDate" class="form-control">
+                </div>
+                <div class="col-md-2 d-flex align-items-end">
+                    <button id="applyDateFilter" class="btn btn-primary">Search</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Monthly Revenue</h5>
+                            <div class="chart-container">
+                            <canvas id="revenue-chart"></canvas>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Customer Satisfaction</h5>
+                            <div class="chart-container">
+                            <canvas id="satisfaction-chart"></canvas>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

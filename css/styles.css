@@ -1,0 +1,190 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    padding-top: 20px; /* Height of the navbar */
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1030;
+}
+
+.navbar-brand {
+    margin-right: auto;
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.navbar-nav .nav-item {
+    margin-left: 10px;
+}
+
+
+.navbar-toggler {
+    margin-left: auto;
+}
+
+
+
+/* Bright color for nav links */
+.navbar-nav .nav-link {
+    color: #ffffff !important; /* Bright white */
+    font-weight: 500; /* Make the font slightly bolder */
+    transition: color 0.9s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover effect for nav links */
+.navbar-nav .nav-link:hover {
+    color: #eeea17 !important; 
+    text-decoration:underline;
+
+}
+
+.navbar-nav .nav-link.active {
+    color: #eeea17 !important; 
+    font-weight: bold; 
+    text-decoration:underline;
+
+}
+
+
+
+.content-wrapper {
+    padding-top: 20px;
+    margin-top: 56px; /* Match the navbar height */
+}
+
+.card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+}
+
+
+
+.card-header {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-primary:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+
+
+
+
+
+#shipment-map, #fleet-map {
+    height: 400px;
+    width: 100%;
+    background-color: #e9ecef;
+}
+
+.list-group-item {
+    border-left: none;
+    border-right: none;
+}
+
+.list-group-item:first-child {
+    border-top: none;
+}
+
+.list-group-item:last-child {
+    border-bottom: none;
+}
+
+.card-title {
+    text-align: center;
+    font-variant:small-caps;
+    
+}
+
+.section-header{
+    background-color: rgb(230, 68, 103);
+    padding: 8px 0;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-bottom: 2px solid #dee2e6;
+}
+
+.section-header h2 {
+    text-align: center;
+    margin: 0;
+    color: #202020;
+    font-weight:400;
+}
+/* Ensure all charts have a consistent height */
+canvas {
+    width: 100% !important;
+    height: 300px !important;
+}
+
+#shipment-map, #fleet-map {
+    height: 400px;
+    width: 100%;
+}
+
+.chart-container {
+    height: 300px;
+    width: 100%;
+}
+
+
+/* Smooth scrolling for anchor links */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Adjust anchor scroll position to account for fixed navbar */
+:target::before {
+    content: "";
+    display: block;
+    height: 60px; /* Navbar height + some extra padding */
+    margin: -60px 0 0;
+}
+
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #shipment-map, #fleet-map {
+        height: 300px;
+    }
+
+    .section-header {
+        padding: 10px 0;
+    }
+    .section-header h2 {
+        font-size: 1.5rem;
+    }
+
+
+}
+
+
+@media (max-width: 991px) {
+    .navbar-nav {
+        margin-left: 0;
+
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for collapsed menu */
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .navbar-nav .nav-item {
+        margin-left: 0;
+    }
+}

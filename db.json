@@ -1,0 +1,32 @@
+{
+    "shipments": [
+      { "id": "SH001", "destination": "New York", "status": "In Transit" },
+      { "id": "SH002", "destination": "Los Angeles", "status": "Delivered" },
+      { "id": "SH003", "destination": "Chicago", "status": "Pending" }
+    ],
+    "inventory": [
+      { "product": "Product A", "stock": 65 },
+      { "product": "Product B", "stock": 59 },
+      { "product": "Product C", "stock": 80 },
+      { "product": "Product D", "stock": 81 },
+      { "product": "Product E", "stock": 56 }
+    ],
+    "vehicles": [
+      { "id": 1, "name": "Truck 1", "status": "Active", "location": [40.7128, -74.0060] },
+      { "id": 2, "name": "Truck 2", "status": "Maintenance", "location": [34.0522, -118.2437] },
+      { "id": 3, "name": "Truck 3", "status": "Active", "location": [51.5074, -0.1278] }
+    ],
+    "revenue": [
+      { "month": "Jan", "amount": 12000 },
+      { "month": "Feb", "amount": 19000 },
+      { "month": "Mar", "amount": 3000 },
+      { "month": "Apr", "amount": 5000 },
+      { "month": "May", "amount": 2000 },
+      { "month": "Jun", "amount": 3000 }
+    ],
+    "satisfaction": [
+      { "status": "Satisfied", "count": 70 },
+      { "status": "Neutral", "count": 20 },
+      { "status": "Unsatisfied", "count": 10 }
+    ]
+  }
