@@ -1,5 +1,7 @@
 # Dashboard
-direct live link:->    https://patilprem21.github.io/dashboard/
+direct live link:->  https://patilprem21.github.io/dashboard/html/login.html
+
+direct live link:->  https://patilprem21.github.io/dashboard/
                      
 	usernam:- admin
 	password:- password				 
